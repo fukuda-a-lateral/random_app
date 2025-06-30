@@ -9,7 +9,7 @@ export function Login() {
                 description="Input description"
                 placeholder="Input placeholder"
             />
-            <Button color="grape" size="lg">
+            <Button color="grape" size="lg" className="text-red">
                 グレープボタン🍇
             </Button>
         </div>
