@@ -15,4 +15,4 @@ Route::get('/{any?}', function () { // {any?} で / も /hoge も受け止める
 
 
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';

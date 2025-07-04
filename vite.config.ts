@@ -11,12 +11,23 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/js/app.js",
-                "resources/ts/index.tsx",
+                "resources/ts/app.tsx",
             ],
             refresh: true,
         }),
         tailwindcss(),
     ],
+    server: {
+        // ★これが重要★
+        host: true, // Docker環境では必須
+        hmr: {
+            host: "localhost", // または 'random-app.test'など、アクセスするホスト名
+            clientPort: 5173, // Viteのポート
+        },
+        watch: {
+            usePolling: true, // Docker環境でのファイル変更検知用
+        },
+    },
     resolve: {
         alias: {
             // @styles というエイリアス名で resources/scss/styles ディレクトリを指すように設定
