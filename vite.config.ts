@@ -9,8 +9,8 @@ export default defineConfig({
         react(),
         laravel({
             input: [
-                "resources/css/app.css",
-                "resources/js/app.js",
+                // "resources/scss/app.scss",
+                // "resources/ts/app.ts",
                 "resources/ts/app.tsx",
             ],
             refresh: true,
@@ -24,6 +24,19 @@ export default defineConfig({
             host: "localhost", // または 'random-app.test'など、アクセスするホスト名
             clientPort: 5173, // Viteのポート
         },
+        // proxy: {
+        //     // '/api': { // もしAPIルートをプロキシしたい場合
+        //     //     target: 'http://localhost:8000',
+        //     //     changeOrigin: true,
+        //     //     rewrite: (path) => path.replace(/^\/api/, '')
+        //     // },
+        //     // '/' がLaravelアプリケーションにプロキシされるように設定
+        //     '/': {
+        //         target: 'http://laravel.test', // LaravelアプリケーションのURL
+        //         changeOrigin: true, // オリジンを変更 (CORS回避のため)
+        //         // rewrite: (path) => path // パスを書き換えない
+        //     }
+        // },
         watch: {
             usePolling: true, // Docker環境でのファイル変更検知用
         },

@@ -8,7 +8,7 @@
     <title>laravelView側タイトル</title>
     @viteReactRefresh
     @vite([
-    'resources/css/app.css',
+    // 'resources/css/app.css',
     'resources/scss/app.scss',
     'resources/ts/app.tsx',
     ])
