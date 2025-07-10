@@ -1,13 +1,14 @@
 import { Box, Button, PasswordInput, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { useForm } from "@mantine/form";
+import axios from "axios";
 
 export function Login() {
     const form = useForm({
         mode: "uncontrolled",
         initialValues: {
             email: "",
-            pass: false,
+            password: "",
         },
         validate: {
             email: (value) =>
@@ -15,12 +16,21 @@ export function Login() {
         },
     });
 
+    const [post, setPost] = useState();
     //これらのステート管理がMantineのuseFormを使うことで不要になる
     // const [login_id, LoginId] = useState("");
     // const [login_pass, LoginPass] = useState("");
-    const handleSubmit = (values: typeof form.values) => {
+    const handleSubmit = async (values: typeof form.values) => {
         console.log("入力値はuseFormがいい感じにセットしてくれる", values);
-        // ここで認証のapiを呼び出す
+        //すでにトークンは持ってるので、Loginの処理を書いていく！
+        try {
+            const params = { email: values.email, password: values.password };
+            const res = await axios.post("/login", params);
+            setPost(res.data);
+            console.log("post成功！", post);
+        } catch (error) {
+            console.log("api接続に失敗しました", error);
+        }
     };
     return (
         <div style={{ padding: 40 }}>
@@ -32,9 +42,9 @@ export function Login() {
                         placeholder="ログインID or メールアドレス"
                     />
                     <PasswordInput
-                        {...form.getInputProps("pass")}
+                        {...form.getInputProps("password")}
                         label="パスワード"
-                        placeholder="ダルだるちっちくん"
+                        placeholder=""
                     />
                 </Box>
                 <Button
@@ -42,7 +52,7 @@ export function Login() {
                     size="lg"
                     className="text-red"
                     type="submit"
-                    onClick={Login}
+                    // onClick={handleSubmit} ←form自体にonSubmitがあるから不要
                 >
                     ログインボタン
                 </Button>

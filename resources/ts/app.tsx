@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
+// import { getCsrfCookie } from "./lib/api";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { Login } from "./components/Login";
 import Example from "./components/Example";
+import axios from "axios";
 
-const root = createRoot(document.getElementById("app")!);
+const MainApp = () => {
+    useEffect(() => {
+        //リクエストヘッダにX-XRSF-tokenとして付与するXSRF-tokenを取得する
+        const getCsrfCookie = async () => {
+            try {
+                axios.get("/sanctum/csrf-cookie").then((response) => {
+                    // Login...
+                    console.log("トークン取得できました！");
+                });
+            } catch (error) {
+                console.log("トークン取得できず", error);
+            }
+        };
+        getCsrfCookie();
+    }, []);
 
-root.render(
-    <React.StrictMode>
+    return (
         <MantineProvider>
             <BrowserRouter>
                 <Routes>
@@ -18,14 +33,15 @@ root.render(
                 </Routes>
             </BrowserRouter>
         </MantineProvider>
+    );
+};
+
+//id=appの要素を取得してReactアプリをレンダリング
+const root = createRoot(document.getElementById("app")!);
+
+//MainAppを必ず通るエントリルートとして読み込む
+root.render(
+    <React.StrictMode>
+        <MainApp />
     </React.StrictMode>
 );
-
-// import React from "react";
-// import { createRoot } from "react-dom/client";
-
-// // index.blade.phpのid="app"を読み込む
-// const container = document.getElementById("app");
-// const root = createRoot(container!); // createRoot(container!) if you use TypeScript
-
-// root.render(<div className="text-red">Laravel React+Typescript環境構築</div>);
