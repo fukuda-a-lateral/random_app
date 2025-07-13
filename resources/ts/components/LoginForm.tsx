@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "@mantine/form";
 import axios from "axios";
 
-export function Login() {
+export function LoginForm() {
     const form = useForm({
         mode: "uncontrolled",
         initialValues: {

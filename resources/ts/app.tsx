@@ -4,9 +4,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
-import { Login } from "./components/Login";
+import { LoginForm } from "./components/LoginForm";
 import Example from "./components/Example";
 import axios from "axios";
+import { RegisterForm } from "./components/RegisterForm";
 
 const MainApp = () => {
     useEffect(() => {
@@ -28,7 +29,8 @@ const MainApp = () => {
         <MantineProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Login />}></Route>
+                    <Route path="/" element={<LoginForm />}></Route>
+                    <Route path="/register" element={<RegisterForm />}></Route>
                     <Route path="/test" element={<Example />}></Route>
                 </Routes>
             </BrowserRouter>
