@@ -8,6 +8,7 @@ import { LoginForm } from "./components/LoginForm";
 import Example from "./components/Example";
 import axios from "axios";
 import { RegisterForm } from "./components/RegisterForm";
+import { AuthProvider } from "../contexts/AuthContext";
 
 const MainApp = () => {
     useEffect(() => {
@@ -27,13 +28,18 @@ const MainApp = () => {
 
     return (
         <MantineProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<LoginForm />}></Route>
-                    <Route path="/register" element={<RegisterForm />}></Route>
-                    <Route path="/test" element={<Example />}></Route>
-                </Routes>
-            </BrowserRouter>
+            <AuthProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<LoginForm />}></Route>
+                        <Route
+                            path="/register"
+                            element={<RegisterForm />}
+                        ></Route>
+                        <Route path="/test" element={<Example />}></Route>
+                    </Routes>
+                </BrowserRouter>
+            </AuthProvider>
         </MantineProvider>
     );
 };
