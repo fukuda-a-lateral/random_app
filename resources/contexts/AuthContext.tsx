@@ -1,11 +1,11 @@
 import axios from "axios";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, use, useContext, useState } from "react";
 
 type AuthContextType = {
     // user:User|null;
     inLogin: boolean;
     user: User | null;
-    login: (email: string, password: string) => Promise<boolean>; // ログイン処理
+    login: (login_params: LoginParams) => Promise<boolean>; // ログイン処理
     logout: () => Promise<void>; // ログアウト処理
     fetchUser: () => Promise<void>; // ユーザー情報取得処理
 };
@@ -13,6 +13,11 @@ type AuthContextType = {
 type User = {
     name: string;
     email: string;
+};
+
+type LoginParams = {
+    email: string;
+    password: string;
 };
 
 //AuthContextというグローバル使用できるデータや関数を入れる箱をcreateContextで作る
@@ -31,6 +36,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         try {
             const response = await axios.get("/user");
             setUser(response.data);
+            console.log("fetchUser", response.data);
         } catch (error) {
             setUser(null);
             console.log("user情報の取得に失敗しました", error);
@@ -38,16 +44,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     };
 
     //ログイン処理関数
-    const login = async (email: string, password: string): Promise<boolean> => {
+    const login = async (login_params: LoginParams): Promise<boolean> => {
         try {
-            const response = await axios.post("/login", { email, password });
+            const response = await axios.post("/login", {
+                email: login_params.email,
+                password: login_params.password,
+            });
             //ログイン成功したらユーザー情報を再取得
             await fetchUser();
+            console.log("AuthContext成功", user);
             return true;
         } catch (error) {
             //ログイン失敗したらユーザー情報をnullにする
             setUser(null);
-            console.error("ログインに失敗しました", error);
             //エラーを呼び出し元でキャッチできるようにスローする
             throw error;
         }
