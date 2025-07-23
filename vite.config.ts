@@ -25,6 +25,79 @@ export default defineConfig({
             clientPort: 5173, // Viteのポート
         },
         // proxy: {
+        //     // ⭐︎ 各プロキシ設定に onProxyRes または logger を追加 ⭐︎
+        //     "/api": {
+        //         target: "http://localhost:8000",
+        //         changeOrigin: true,
+        //         rewrite: (path) => path.replace(/^\/api/, "/api"),
+        //         // onProxyReq: (proxyReq, req, res) => {
+        //         //     console.log('Proxying /api request:', req.url);
+        //         // },
+        //         // onProxyRes: (proxyRes, req, res) => {
+        //         //     console.log('Received response from /api:', proxyRes.statusCode);
+        //         // },
+        //         configure: (proxy, options) => {
+        //             // こちらが簡単
+        //             proxy.on("proxyReq", (proxyReq, req, res) => {
+        //                 console.log(
+        //                     `[Vite Proxy] Proxying: ${req.method} ${req.url} -> ${options.target}${req.url}`
+        //                 );
+        //             });
+        //             proxy.on("proxyRes", (proxyRes, req, res) => {
+        //                 console.log(
+        //                     `[Vite Proxy] Response for ${req.url}: ${proxyRes.statusCode}`
+        //                 );
+        //             });
+        //             proxy.on("error", (err, req, res) => {
+        //                 console.error(
+        //                     `[Vite Proxy Error] ${req.url}: ${err.message}`
+        //                 );
+        //             });
+        //         },
+        //     },
+        //     // ⭐︎ もし /login や /register などが /api プレフィックスなしで呼ばれている場合もプロキシする ⭐︎
+        //     "/login": {
+        //         target: "http://localhost:8000",
+        //         changeOrigin: true,
+        //         configure: (proxy, options) => {
+        //             proxy.on("proxyReq", (proxyReq, req, res) => {
+        //                 console.log(
+        //                     `[Vite Proxy] Proxying: ${req.method} ${req.url} -> ${options.target}${req.url}`
+        //                 );
+        //             });
+        //             proxy.on("proxyRes", (proxyRes, req, res) => {
+        //                 console.log(
+        //                     `[Vite Proxy] Response for ${req.url}: ${proxyRes.statusCode}`
+        //                 );
+        //             });
+        //             proxy.on("error", (err, req, res) => {
+        //                 console.error(
+        //                     `[Vite Proxy Error] ${req.url}: ${err.message}`
+        //                 );
+        //             });
+        //         },
+        //     },
+        //     "/logout": {
+        //         target: "http://localhost:8000",
+        //         changeOrigin: true,
+        //     },
+        //     "/register": {
+        //         target: "http://localhost:8000",
+        //         changeOrigin: true,
+        //     },
+        //     "/sanctum/csrf-cookie": {
+        //         // CSRFクッキー取得もプロキシ
+        //         target: "http://localhost:8000",
+        //         changeOrigin: true,
+        //     },
+        //     "/user": {
+        //         // もし /api/user ではなく /user で叩いているならこれも必要
+        //         target: "http://localhost:8000",
+        //         changeOrigin: true,
+        //     },
+        // },
+
+        // proxy: {
         //     // '/api': { // もしAPIルートをプロキシしたい場合
         //     //     target: 'http://localhost:8000',
         //     //     changeOrigin: true,
