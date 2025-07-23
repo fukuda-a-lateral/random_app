@@ -31,9 +31,9 @@
         "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
         "paths": {
             // @styles/* で resources/scss/styles/* を指すように設定
-            "@styles/*": ["resources/scss/styles/*"]
+            "@styles/*": ["resources/scss/styles/*"],
             // もし他のエイリアスを設定したらここに追加
-            // "@components/*": ["resources/ts/components/*"],
+            "@components/*": ["resources/ts/components/*"]
         } /* Specify a set of entries that re-map imports to additional lookup locations. */,
         // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
         // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
