@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class LoginRequest extends FormRequest
 {
@@ -16,6 +17,10 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
+                Log::debug('LoginRequest authorize method called.', [
+        'user_logged_in' => Auth::check(),
+        'rate_limiter_too_many_attempts' => RateLimiter::tooManyAttempts($this->throttleKey(), 5),
+    ]);
         return true;
     }
 
@@ -26,6 +31,10 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
+        Log::debug('LoginRequest rules method called.', [
+            'input_email' => $this->input('email'),
+            'input_password' => $this->input('password') // パスワードはログに出さない方がセキュリティ的には良いけど、今回はデバッグのため
+        ]);
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],

@@ -2,15 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{any?}', function () { // {any?} で / も /hoge も受け止める
+use Illuminate\Support\Facades\Log; // これを追加
+
+
+
+// この記述のせいでずっと正しいエントリポイントが叩かれていなかった！
+// require __DIR__ . '/auth.php'; // ログイン、登録、パスワードリセットなどのルート
+
+// SPAのフロントエンドエントリーポイント
+// これが全てのGETリクエストの最後に評価されるようにする
+Route::get('/{any}', function () { // `?` を外すか、必要に応じて `/` のみにする
     return view('app'); // app.blade.php を返す
 })->where('any', '.*');
 
-require __DIR__ . '/auth.php';
-
-
-//BreezeAPIインストールした際の自動記述
-//Laravel側をAPI特化で使う想定でhtmlではなくてただLaravelのバージョンを返すだけにしている
-// Route::get('/', function () {
-//     return ['Laravel' => app()->version()];
-// });

@@ -17,7 +17,7 @@ const MainApp = () => {
             try {
                 axios.get("/sanctum/csrf-cookie").then((response) => {
                     // Login...
-                    console.log("トークン取得できました！");
+                    console.log("トークン取得できました！", response.data);
                 });
             } catch (error) {
                 console.log("トークン取得できず", error);

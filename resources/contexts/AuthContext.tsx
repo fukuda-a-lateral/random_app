@@ -34,9 +34,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     //user情報取得
     const fetchUser = async () => {
         try {
-            const response = await axios.get("/user");
+            const response = await axios.get("api/user");
             setUser(response.data);
-            console.log("fetchUser", response.data);
+            console.log("fetchUserのレスんポンス", response.data);
         } catch (error) {
             setUser(null);
             console.log("user情報の取得に失敗しました", error);
@@ -46,15 +46,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     //ログイン処理関数
     const login = async (login_params: LoginParams): Promise<boolean> => {
         try {
-            const response = await axios.post("/login", {
+            const response = await axios.post("/api/login", {
                 email: login_params.email,
                 password: login_params.password,
             });
+            console.log("/loginのレスポンス", response.data);
+            console.log(
+                "--- Login Function SUCCESSFUL (Unexpected for empty password) ---"
+            ); // パスワード空でここに来たらおかしい
+            console.log("Successful Login Response:", response);
             //ログイン成功したらユーザー情報を再取得
             await fetchUser();
-            console.log("AuthContext成功", user);
             return true;
         } catch (error) {
+            console.error("--- Login Function CAUGHT AN ERROR ---"); // デバッグ用
+            console.error("Full Error Object:", error); // エラーオブジェクト全体を出力
             //ログイン失敗したらユーザー情報をnullにする
             setUser(null);
             //エラーを呼び出し元でキャッチできるようにスローする
