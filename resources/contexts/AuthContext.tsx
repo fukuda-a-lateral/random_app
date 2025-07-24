@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         try {
             const response = await axios.get("api/user");
             setUser(response.data);
-            console.log("fetchUserのレスんポンス", response.data);
+            console.log("fetchUserのレスポンス", response.data);
         } catch (error) {
             setUser(null);
             console.log("user情報の取得に失敗しました", error);

@@ -3,6 +3,7 @@ import { useForm } from "@mantine/form";
 import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
 import { useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 export function LoginForm() {
     const form = useForm({
@@ -17,15 +18,14 @@ export function LoginForm() {
         },
     });
     //コンポーネントのトップレベルでフックスを呼び出す
-    const { login } = useAuth();
+    const { login, inLogin } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const [post, setPost] = useState();
+    //ログイン後のリダイレクト元を取得
+    const from = location.state?.from?.pathname || "/home";
 
-    //これらのステート管理がMantineのuseFormを使うことで不要になる
-    // const [login_id, LoginId] = useState("");
-    // const [login_pass, LoginPass] = useState("");
     const handleSubmit = async (values: typeof form.values) => {
-        console.log("入力値はuseFormがいい感じにセットしてくれる", values);
         //すでにトークンは持ってるので、Loginの処理を書いていく！
         //ログイン処理を任せているuseAuthを呼び出す
         //useFormのおかげでvaluesに入力された内容がオブジェクトで全て入ってるのでそのまま渡す
@@ -34,11 +34,9 @@ export function LoginForm() {
 
             if (success) {
                 console.log("ログイン成功！", success);
+                //ログイン後、元のパスかhomeに遷移
+                navigate(from, { replace: true });
             }
-            // const params = { email: values.email, password: values.password };
-            // const res = await axios.post("/login", params);
-            // setPost(res.data);
-            // console.log("post成功！", post);
         } catch (error) {
             console.log("api接続に失敗しました", error);
         }

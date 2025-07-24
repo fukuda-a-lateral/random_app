@@ -9,6 +9,8 @@ import Example from "./components/Example";
 import axios from "axios";
 import { RegisterForm } from "./components/RegisterForm";
 import { AuthProvider } from "../contexts/AuthContext";
+import { Home } from "./components/Home";
+import { ProtectedRoutes } from "./lib/ProtectedRoutes";
 
 const MainApp = () => {
     useEffect(() => {
@@ -16,8 +18,7 @@ const MainApp = () => {
         const getCsrfCookie = async () => {
             try {
                 axios.get("/sanctum/csrf-cookie").then((response) => {
-                    // Login...
-                    console.log("トークン取得できました！", response.data);
+                    console.log("トークン取得できました！");
                 });
             } catch (error) {
                 console.log("トークン取得できず", error);
@@ -36,7 +37,10 @@ const MainApp = () => {
                             path="/register"
                             element={<RegisterForm />}
                         ></Route>
-                        <Route path="/test" element={<Example />}></Route>
+                        {/* PrivateRoutes内内に設定された画面はログインが必須 */}
+                        <Route element={<ProtectedRoutes />}>
+                            <Route path="/home" element={<Home />}></Route>
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
