@@ -3,7 +3,7 @@ import { useForm } from "@mantine/form";
 import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
 import { useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, replace, useLocation, useNavigate } from "react-router-dom";
 
 export function LoginForm() {
     const form = useForm({
@@ -41,9 +41,13 @@ export function LoginForm() {
             console.log("api接続に失敗しました", error);
         }
     };
+    const handleRegister = () => {
+        navigate("/register", { replace: false });
+    };
     return (
         <div style={{ padding: 40 }}>
             <form onSubmit={form.onSubmit(handleSubmit)}>
+                {/* <form> */}
                 <Box p={"xs"}>
                     <TextInput
                         {...form.getInputProps("email")}
@@ -63,9 +67,18 @@ export function LoginForm() {
                     type="submit"
                     // onClick={handleSubmit} ←form自体にonSubmitがあるから不要
                 >
-                    ログインボタン
+                    ログイン
                 </Button>
             </form>
+            <Button
+                color="blue"
+                size="lg"
+                className=""
+                type="submit"
+                onClick={handleRegister}
+            >
+                会員登録
+            </Button>
         </div>
     );
 }
