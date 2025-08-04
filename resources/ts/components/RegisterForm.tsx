@@ -2,8 +2,10 @@ import { Box, Button, PasswordInput, TextInput } from "@mantine/core";
 import { useState } from "react";
 import { useForm } from "@mantine/form";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function RegisterForm() {
+    const navigate = useNavigate();
     const form = useForm({
         mode: "uncontrolled",
         initialValues: {
@@ -20,7 +22,6 @@ export function RegisterForm() {
 
     const [post, setPost] = useState();
     const handleSubmit = async (values: typeof form.values) => {
-        console.log("入力値はuseFormがいい感じにセットしてくれる", values);
         try {
             const params = {
                 name: values.name,
@@ -28,9 +29,11 @@ export function RegisterForm() {
                 password: values.password,
                 password_confirmation: values.password_confirmation,
             };
-            const res = await axios.post("/register", params);
+            const res = await axios.post("api/register", params);
             setPost(res.data);
+
             console.log("post成功！", post);
+            navigate("/");
         } catch (error) {
             console.log("api接続に失敗しました", error);
         }
