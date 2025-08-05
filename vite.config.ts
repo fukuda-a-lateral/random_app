@@ -29,6 +29,8 @@ export default defineConfig({
             "/api": {
                 target: "http://localhost:8000",
                 changeOrigin: true,
+            },
+        },
         watch: {
             usePolling: true, // Docker環境でのファイル変更検知用
         },

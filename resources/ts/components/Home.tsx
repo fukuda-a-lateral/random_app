@@ -1,26 +1,37 @@
-import { h } from "vue";
 import {
     Button,
     Container,
-    Grid,
     SimpleGrid,
-    Skeleton,
     Box,
     Text,
     useMantineTheme,
-    BackgroundImage,
-    Center,
     Flex,
     Image,
 } from "@mantine/core";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const PRIMARY_COL_HEIGHT = "500px";
+
+type Category = { id: number; name: string; category_id: number };
 
 export function Home() {
     const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 5 - var(--mantine-spacing-md) / 2)`;
     const theme = useMantineTheme();
 
     //ジャンルボタンを表示するための情報を取得する
+    const [categories, setCategories] = useState<Category[]>([]);
+    useEffect(() => {
+        const getCategory = async () => {
+            try {
+                const res = await axios.get("/api/categories");
+                setCategories(res.data);
+            } catch (error) {
+                console.log("カテゴリーを取得できませんでした。", error);
+            }
+        };
+        getCategory();
+    }, []);
 
     //ボタン押下時
     const handleClick = () => {
@@ -93,25 +104,23 @@ export function Home() {
                                     今日、何する？
                                 </Text>
                             </Box>
-                            <Button
-                                variant="transparent"
-                                c={"#716969"}
-                                onClick={handleClick}
-                            >
-                                <Text size="lg">ランチにする？</Text>
-                            </Button>
-                            <Button variant="transparent" c={"#716969"}>
-                                <Text size="lg">登山にする？</Text>
-                            </Button>
-                            <Button variant="transparent" c={"#716969"}>
-                                <Text size="lg">登山にする？</Text>
-                            </Button>
-                            <Button variant="transparent" c={"#716969"}>
-                                <Text size="lg">登山にする？</Text>
-                            </Button>
-                            <Button variant="transparent" c={"#716969"}>
-                                <Text size="lg">登山にする？</Text>
-                            </Button>
+
+                            {/* 以下、初期取得したカテゴリーをボタンで表示 */}
+                            {categories &&
+                                categories.map((item) => {
+                                    return (
+                                        <Button
+                                            key={item.name}
+                                            variant="transparent"
+                                            c={"#716969"}
+                                            onClick={handleClick}
+                                        >
+                                            <Text size="lg">
+                                                {item.name}にする？
+                                            </Text>
+                                        </Button>
+                                    );
+                                })}
                         </Flex>
                     </Box>
                 </SimpleGrid>
