@@ -10,6 +10,8 @@ import axios from "axios";
 import { RegisterForm } from "./components/RegisterForm";
 import { AuthProvider } from "../contexts/AuthContext";
 import { Home } from "./components/Home";
+import { Genres } from "./components/Genres";
+
 import { ProtectedRoutes } from "./lib/ProtectedRoutes";
 
 const MainApp = () => {
@@ -37,10 +39,14 @@ const MainApp = () => {
                             path="/register"
                             element={<RegisterForm />}
                         ></Route>
-                        {/* PrivateRoutes内内に設定された画面はログインが必須 */}
-                        <Route element={<ProtectedRoutes />}>
-                            <Route path="/home" element={<Home />}></Route>
-                        </Route>
+                        {/* PrivateRoutes内に設定された画面はログインが必須 */}
+                        {/* <Route element={<ProtectedRoutes />}> */}
+                        <Route path="/home" element={<Home />}></Route>
+                        <Route
+                            path="/genres/:category_id"
+                            element={<Genres />}
+                        ></Route>
+                        {/* </Route> */}
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>

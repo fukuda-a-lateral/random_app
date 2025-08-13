@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PRIMARY_COL_HEIGHT = "500px";
 
@@ -18,6 +19,7 @@ type Category = { id: number; name: string; category_id: number };
 export function Home() {
     const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 5 - var(--mantine-spacing-md) / 2)`;
     const theme = useMantineTheme();
+    const navigate = useNavigate();
 
     //ジャンルボタンを表示するための情報を取得する
     const [categories, setCategories] = useState<Category[]>([]);
@@ -34,10 +36,11 @@ export function Home() {
     }, []);
 
     //ボタン押下時
-    const handleClick = () => {
+    const handleClick = (category_id: number) => {
         console.log("押したよ！");
-        // ボタンはカテゴリーidを持っていて、それをkeyにジャンルを取得
-        // DB側なのでapiを呼び出す
+        //ジャンル画面に遷移、そのカテゴリーに紐づくジャンルを表示したいのでカテゴリーidを渡す
+        //appのルーティングを動的に設定する
+        navigate(`/genres/${category_id}`);
     };
     return (
         <>
@@ -113,7 +116,8 @@ export function Home() {
                                             key={item.name}
                                             variant="transparent"
                                             c={"#716969"}
-                                            onClick={handleClick}
+                                            onClick={() => handleClick(item.id)}
+                                            value={item.category_id}
                                         >
                                             <Text size="lg">
                                                 {item.name}にする？
