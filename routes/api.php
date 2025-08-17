@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\CardController;
 
 
 //カテゴリーの取得
@@ -18,6 +19,8 @@ Route::get('/categories',[CategoryController::class,'get_category']);
 //ジャンルの取得
 Route::get('/genres/{category_id}',[GenreController::class,'get_genre']);
 
+// カードの取得
+Route::get('/card/{genre_id}',[CardController::class,'random_card']);
 // 認証関連
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')

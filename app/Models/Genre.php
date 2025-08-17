@@ -20,7 +20,7 @@ class Genre extends Model
     }
 
     //複数のジャンルが複数のカードと紐づく。多対多の関係
-    public function card(){
+    public function cards(){
         return $this->belongsToMany(Card::class,'card_genre','genre_id','card_id');
     }
 }

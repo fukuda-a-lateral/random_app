@@ -11,6 +11,7 @@ import { RegisterForm } from "./components/RegisterForm";
 import { AuthProvider } from "../contexts/AuthContext";
 import { Home } from "./components/Home";
 import { Genres } from "./components/Genres";
+import { Card } from "./components/Card";
 
 import { ProtectedRoutes } from "./lib/ProtectedRoutes";
 
@@ -45,6 +46,10 @@ const MainApp = () => {
                         <Route
                             path="/genres/:category_id"
                             element={<Genres />}
+                        ></Route>
+                        <Route
+                            path="/card/:genre_id"
+                            element={<Card />}
                         ></Route>
                         {/* </Route> */}
                     </Routes>
