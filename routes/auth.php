@@ -8,7 +8,7 @@
 // use App\Http\Controllers\Auth\VerifyEmailController;
 // use Illuminate\Support\Facades\Route;
 
-// Route::post('/register', [RegisteredUserController::class, 'store'])
+// Route::post('member-register', [RegisteredUserController::class, 'store'])
 //     ->middleware('guest')
 //     ->name('register');
 

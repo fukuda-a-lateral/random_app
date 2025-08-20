@@ -4,16 +4,19 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { LoginForm } from "./components/LoginForm";
 import Example from "./components/Example";
 import axios from "axios";
-import { RegisterForm } from "./components/RegisterForm";
+import { MemberRegistration } from "./components/MemberRegistration";
+
 import { AuthProvider } from "../contexts/AuthContext";
 import { Home } from "./components/Home";
 import { Genres } from "./components/Genres";
 import { Card } from "./components/Card";
 
 import { ProtectedRoutes } from "./lib/ProtectedRoutes";
+import { RegisterCard } from "./components/RegisterCard";
 
 const MainApp = () => {
     useEffect(() => {
@@ -37,8 +40,8 @@ const MainApp = () => {
                     <Routes>
                         <Route path="/" element={<LoginForm />}></Route>
                         <Route
-                            path="/register"
-                            element={<RegisterForm />}
+                            path="member-register"
+                            element={<MemberRegistration />}
                         ></Route>
                         {/* PrivateRoutes内に設定された画面はログインが必須 */}
                         {/* <Route element={<ProtectedRoutes />}> */}
@@ -50,6 +53,10 @@ const MainApp = () => {
                         <Route
                             path="/card/:genre_id"
                             element={<Card />}
+                        ></Route>
+                        <Route
+                            path="/register-card"
+                            element={<RegisterCard />}
                         ></Route>
                         {/* </Route> */}
                     </Routes>

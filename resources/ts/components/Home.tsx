@@ -35,12 +35,16 @@ export function Home() {
         getCategory();
     }, []);
 
-    //ボタン押下時
+    //カテゴリーボタン押下時
     const handleClick = (category_id: number) => {
         console.log("押したよ！");
         //ジャンル画面に遷移、そのカテゴリーに紐づくジャンルを表示したいのでカテゴリーidを渡す
         //appのルーティングを動的に設定する
         navigate(`/genres/${category_id}`);
+    };
+    // 登録ボタン押下時
+    const handleClickRegister = () => {
+        navigate("/register-card");
     };
     return (
         <>
@@ -67,18 +71,19 @@ export function Home() {
                             style={{ position: "absolute" }}
                             h={PRIMARY_COL_HEIGHT}
                         ></Image>
-
-                        <Text
+                        <Button
+                            // variant="transparent"
                             c={"white"}
-                            size="lg"
-                            p={50}
+                            onClick={() => handleClickRegister()}
+                            // value={item.category_id}
                             style={{
                                 position: "absolute",
-                                top: "50px",
+                                top: "50%",
+                                left: "35%",
                             }}
                         >
-                            登録する？
-                        </Text>
+                            <Text size="lg">登録する？</Text>
+                        </Button>
                     </Box>
                     <Box>
                         <Flex
@@ -119,9 +124,7 @@ export function Home() {
                                             onClick={() => handleClick(item.id)}
                                             value={item.category_id}
                                         >
-                                            <Text size="lg">
-                                                {item.name}にする？
-                                            </Text>
+                                            <Text size="lg">{item.name}</Text>
                                         </Button>
                                     );
                                 })}

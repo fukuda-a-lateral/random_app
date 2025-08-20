@@ -22,9 +22,9 @@ Route::get('/genres/{category_id}',[GenreController::class,'get_genre']);
 // カードの取得
 Route::get('/card/{genre_id}',[CardController::class,'random_card']);
 // 認証関連
-Route::post('/register', [RegisteredUserController::class, 'store'])
+Route::post('member-register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
-    ->name('register');
+    ->name('member-register');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')

@@ -42,7 +42,7 @@ export function LoginForm() {
         }
     };
     const handleRegister = () => {
-        navigate("/register", { replace: false });
+        navigate("member-register", { replace: false });
     };
     return (
         <div style={{ padding: 40 }}>

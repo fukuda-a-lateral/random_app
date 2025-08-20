@@ -4,7 +4,7 @@ import { useForm } from "@mantine/form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export function RegisterForm() {
+export function MemberRegistration() {
     const navigate = useNavigate();
     const form = useForm({
         mode: "uncontrolled",
@@ -29,7 +29,7 @@ export function RegisterForm() {
                 password: values.password,
                 password_confirmation: values.password_confirmation,
             };
-            const res = await axios.post("api/register", params);
+            const res = await axios.post("api/member-register", params);
             setPost(res.data);
 
             console.log("post成功！", post);
