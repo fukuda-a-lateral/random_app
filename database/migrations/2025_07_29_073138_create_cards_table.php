@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('description');
             $table->string('url');
             $table->string('img')->nullable();
+            $table->string('location')->nullable();
+            $table->string('open')->nullable();
+            $table->string('close')->nullable();
+            $table->string('level')->nullable();
+            $table->string('k_1')->nullable();
+            $table->string('k_2')->nullable();
+            $table->string('k_3')->nullable();
+            $table->string('k_4')->nullable();
+            $table->string('k_5')->nullable();
             $table->integer('count');
             $table->integer('done');
             $table->timestamps();
