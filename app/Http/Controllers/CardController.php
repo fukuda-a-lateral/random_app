@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Genre;
+use App\Models\Card;
+use App\Http\Requests\CardRequest;
 use Illuminate\Support\Facades\Log;
 
 
@@ -24,5 +26,47 @@ class CardController extends Controller
 
         $random_card = $cards->random();
         return response()->json($random_card);
+    }
+
+    public function register_card(CardRequest $request){
+        // バリデーション済みのリクエストを受け取る
+        $data = $request->validated();
+        // リクエストからジャンルを切り離す（Cardテーブルにgenreカラムがないから）
+        $genres = $data['genres'];
+        unset($data['genres']);
+        // 定休日が配列で来るのでjson(文字列)に変換する
+        // Modelにprotected $casts =['close'=>'array']を追加したので不要
+        // $data['close'] = json_encode($data['close']);
+        // リクエストにない項目を追加
+        $data['count']=0;
+        $data['done']=0;
+        // Cardテーブルにデータを追加
+        $card = Card::create($data);
+
+        // cardModelに設定したbelongToManyを設定したgenresメソッドを使う
+        // card_genreテーブルからこのカードidに紐づいたジャンルを全て削除
+        // 新しく渡されたgenresを使ってcard_genreテーブルにデータを追加する
+        // $cardには新しく追加した1件分のデータが入っているのでそれに紐づくように動く
+        $card->genres()->sync($genres);
+
+        return response()->json(['message'=>'カードが登録されました'],201);
+
+        // $card->title = $request->title;
+        // $card->description = $request->description;
+        // $card->url = $request->url;
+        // $card->img = $request->img;
+        // $card->location = $request->location;
+        // $card->start = $request->start;
+        // $card->end = $request->end;
+        // $card->close = json_encode($request->close);
+        // $card->level = $request->level;
+        // $card->save();
+
+        // 中間テーブルにデータ登録する方法がイマイチ分からない。
+        // リレーション設定してるからそのまま行けるのか・・・？
+        // $card->genres()->genre_id = $params->genre;
+
+
+
     }
 }

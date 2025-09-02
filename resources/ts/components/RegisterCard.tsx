@@ -9,7 +9,7 @@ import {
     TextInput,
 } from "@mantine/core";
 import { TimePicker } from "@mantine/dates";
-import { useForm } from "@mantine/form";
+import { useForm, UseFormReturnType } from "@mantine/form";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -29,14 +29,14 @@ export function RegisterCard() {
         initialValues: {
             title: "",
             category: "",
-            genre: [],
+            genres: [],
             description: "",
             url: "",
             img: "",
             location: "",
             start: "",
             end: "",
-            close: "",
+            close: [],
             level: "",
         },
         // 今のフォーム全体の値(now_form_value)を引数に受け取る
@@ -52,6 +52,7 @@ export function RegisterCard() {
 
     const [category, setCategory] = useState<Category[]>([]);
     const [genres, setGenres] = useState<Genre[]>([]);
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         // セレクトにセットするカテゴリーを取得する
@@ -80,8 +81,16 @@ export function RegisterCard() {
         }
     };
 
-    const handleSubmit = () => {
-        console.log("ボタンが押されたよ");
+    const handleSubmit = async (values: typeof form.values) => {
+        try {
+            const res = await axios.post(
+                "/api/card/register",
+                form.getValues()
+            );
+            setMessage(res.data);
+        } catch (error) {
+            console.log("カードの登録に失敗", error);
+        }
     };
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -112,7 +121,7 @@ export function RegisterCard() {
                         data={genres.map((item) => {
                             return { value: String(item.id), label: item.name };
                         })}
-                        {...form.getInputProps("genre")}
+                        {...form.getInputProps("genres")}
                     />
                     <Textarea
                         label="説明"

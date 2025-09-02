@@ -124,7 +124,9 @@ export function Home() {
                                             onClick={() => handleClick(item.id)}
                                             value={item.category_id}
                                         >
-                                            <Text size="lg">{item.name}</Text>
+                                            <Text size="lg">
+                                                {item.name}にする？
+                                            </Text>
                                         </Button>
                                     );
                                 })}

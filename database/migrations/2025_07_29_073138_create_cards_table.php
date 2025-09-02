@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('url');
             $table->string('img')->nullable();
             $table->string('location')->nullable();
-            $table->string('start')->nullable();
-            $table->string('end')->nullable();
-            $table->string('close')->nullable();
+            $table->time('start')->nullable();
+            $table->time('end')->nullable();
+            $table->json('close')->nullable();
             $table->string('level')->nullable();
             $table->string('k_1')->nullable();
             $table->string('k_2')->nullable();

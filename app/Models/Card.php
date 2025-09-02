@@ -13,9 +13,24 @@ class Card extends Model
         'description',
         'url',
         'img',
+        'location',
+        'start',
+        'end',
+        'close',
+        'level',
+        'k_1',
+        'k_2',
+        'k_3',
+        'k_4',
+        'k_5',
         'count',
         'done',
     ];
+
+    protected $casts = [
+        'close' => 'array',
+    ];
+
     public function genres(){
         // Cardモデルは複数のGenreモデルと多対多の関係を持つ
         // 中間テーブル 'card_genre' を経由する

@@ -19,8 +19,12 @@ Route::get('/categories',[CategoryController::class,'get_category']);
 //ジャンルの取得
 Route::get('/genres/{category_id}',[GenreController::class,'get_genre']);
 
-// カードの取得
-Route::get('/card/{genre_id}',[CardController::class,'random_card']);
+// ランダムカードの取得
+Route::get('/random_card/{genre_id}',[CardController::class,'random_card']);
+
+// カードの登録
+Route::post('/card/register',[CardController::class,'register_card']);
+
 // 認証関連
 Route::post('member-register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')

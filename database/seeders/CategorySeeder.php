@@ -12,11 +12,11 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['name'=>'ご飯にする？','user_id'=>'1']);
-        Category::create(['name'=>'お出かけにする？','user_id'=>'1']);
-        Category::create(['name'=>'アクティビティにする？','user_id'=>'1']);
-        Category::create(['name'=>'お家を楽しむ？','user_id'=>'1']);
-        Category::create(['name'=>'宿を楽しむ？','user_id'=>'1']);
+        Category::create(['name'=>'ご飯','user_id'=>'1']);
+        Category::create(['name'=>'お出かけ','user_id'=>'1']);
+        Category::create(['name'=>'アクティビティ','user_id'=>'1']);
+        Category::create(['name'=>'インドア','user_id'=>'1']);
+        Category::create(['name'=>'ホテルステイ','user_id'=>'1']);
         //
     }
 }

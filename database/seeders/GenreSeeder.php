@@ -15,11 +15,11 @@ class GenreSeeder extends Seeder
     public function run(): void
     {
         //カテゴリーのidを取得する
-        $category_1=Category::firstOrCreate(['name'=>'ご飯にする？']);
-        $category_2=Category::firstOrCreate(['name'=>'お出かけにする？']);
-        $category_3=Category::firstOrCreate(['name'=>'アクティビティにする？']);
-        $category_4=Category::firstOrCreate(['name'=>'お家を楽しむ？']);
-        $category_5=Category::firstOrCreate(['name'=>'宿を楽しむ？']);
+        $category_1=Category::firstOrCreate(['id'=>1]);
+        $category_2=Category::firstOrCreate(['id'=>2]);
+        $category_3=Category::firstOrCreate(['id'=>3]);
+        $category_4=Category::firstOrCreate(['id'=>4]);
+        $category_5=Category::firstOrCreate(['id'=>5]);
 
         Genre::create(['name'=>'和食','category_id'=>$category_1->id]);
         Genre::create(['name'=>'洋食','category_id'=>$category_1->id]);
