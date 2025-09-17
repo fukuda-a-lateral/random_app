@@ -11,8 +11,50 @@
         "Noto Color Emoji";
 }
 
-.text-red {
-    color: blue !important;
-    font-size: 50px;
+button.middle {
+    color: #333;
+    font-size: 1.5rem;
     font-weight: bold;
+    background-color: #ffffff;
+    border: 2px #888 solid;
+    border-radius: 30px;
+    width: 300px;
+    height: 60px;
+    padding: 10px;
+    // margin: 5px;
+}
+
+button.large {
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #fff;
+    width: 200px;
+    padding: 10px;
+    // border: 1px #333 solid;
+    border-radius: 25px;
+    z-index: 10;
+}
+
+button.original-box-shadow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    background-color: #f5cbcb;
+    font-size: 1rem;
+    width: 200px;
+    // height: 100px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+// 入力フォーム共通スタイル
+.my-input {
+    border: 2px #888 solid !important;
+}
+.my-label {
+    // font-size: 1.2rem !important;
+    margin-bottom: 8px;
 }

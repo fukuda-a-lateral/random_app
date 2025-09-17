@@ -1,9 +1,24 @@
-import { Box, Button, PasswordInput, TextInput } from "@mantine/core";
+import {
+    Box,
+    Button,
+    Container,
+    Flex,
+    PasswordInput,
+    SimpleGrid,
+    TextInput,
+    Image,
+    Text,
+    Center,
+    Space,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useAuth } from "../../contexts/AuthContext";
 import axios from "axios";
 import { useState } from "react";
 import { Navigate, replace, useLocation, useNavigate } from "react-router-dom";
+import { table } from "console";
+
+const PRIMARY_COL_HEIGHT = "500px";
 
 export function LoginForm() {
     const form = useForm({
@@ -45,40 +60,62 @@ export function LoginForm() {
         navigate("member-register", { replace: false });
     };
     return (
-        <div style={{ padding: 40 }}>
-            <form onSubmit={form.onSubmit(handleSubmit)}>
-                {/* <form> */}
-                <Box p={"xs"}>
-                    <TextInput
-                        {...form.getInputProps("email")}
-                        label="ログインID"
-                        placeholder="ログインID or メールアドレス"
-                    />
-                    <PasswordInput
-                        {...form.getInputProps("password")}
-                        label="パスワード"
-                        placeholder=""
-                    />
-                </Box>
-                <Button
-                    color="grape"
-                    size="lg"
-                    className="text-red"
-                    type="submit"
-                    // onClick={handleSubmit} ←form自体にonSubmitがあるから不要
+        <>
+            <Container w={"50%"}>
+                <Box
+                    w={"100%"}
+                    mt={"10%"}
+                    ta={"center"}
+                    style={{ padding: 40 }}
                 >
-                    ログイン
-                </Button>
-            </form>
-            <Button
-                color="blue"
-                size="lg"
-                className=""
-                type="submit"
-                onClick={handleRegister}
-            >
-                会員登録
-            </Button>
-        </div>
+                    <form onSubmit={form.onSubmit(handleSubmit)}>
+                        {/* <form> */}
+                        <Box p={"xs"} w={"100%"} ta={"left"} m={"auto"}>
+                            <TextInput
+                                size="lg"
+                                classNames={{
+                                    label: "my-label",
+                                    input: "my-input",
+                                }}
+                                {...form.getInputProps("email")}
+                                label="■ログインID"
+                                placeholder="ログインID or メールアドレス"
+                            />
+                            <Space h={"30px"} />
+                            <PasswordInput
+                                size="lg"
+                                classNames={{
+                                    label: "my-label",
+                                    input: "my-input",
+                                }}
+                                {...form.getInputProps("password")}
+                                label="■パスワード"
+                                placeholder=""
+                            />
+                        </Box>
+                        <Space h={"50px"} />
+                        <Button
+                            size="lg"
+                            // c={"#333333"}
+                            className="middle"
+                            type="submit"
+                            // onClick={handleSubmit} ←form自体にonSubmitがあるから不要
+                        >
+                            ログイン
+                        </Button>
+                        <Space h={"20px"} />
+                    </form>
+                    <Button
+                        // color="blue"
+                        size="lg"
+                        className="middle"
+                        type="submit"
+                        onClick={handleRegister}
+                    >
+                        会員登録
+                    </Button>
+                </Box>
+            </Container>
+        </>
     );
 }
