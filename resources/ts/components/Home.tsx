@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "@styles/_home.scss";
 
 const PRIMARY_COL_HEIGHT = "500px";
 
@@ -61,28 +62,27 @@ export function Home() {
                 >
                     <Box
                         // h={PRIMARY_COL_HEIGHT}
-                        style={{
-                            backgroundColor: theme.colors.grape[5],
-                            position: "relative",
-                        }}
+                        className="left-area"
+                        style={
+                            {
+                                // backgroundColor: theme.colors.grape[5],
+                                // position: "relative",
+                            }
+                        }
                     >
-                        <Image
-                            src="/images/forest.jpg"
-                            style={{ position: "absolute" }}
-                            h={PRIMARY_COL_HEIGHT}
-                        ></Image>
+                        <Box h={PRIMARY_COL_HEIGHT} className="overlay"></Box>
                         <Button
                             // variant="transparent"
-                            c={"white"}
                             onClick={() => handleClickRegister()}
+                            className="original-box-shadow"
                             // value={item.category_id}
                             style={{
                                 position: "absolute",
                                 top: "50%",
-                                left: "35%",
+                                left: "25%",
                             }}
                         >
-                            <Text size="lg">登録する？</Text>
+                            登録する？
                         </Button>
                     </Box>
                     <Box>

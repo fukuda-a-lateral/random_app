@@ -1,0 +1,19 @@
+.left-area {
+    background-image: url("/images/forest.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 500px;
+    // background-color: red;
+}
+
+.overlay {
+    background: rgba(195, 146, 180, 0.4);
+    width: 100%;
+    // height: $card-height;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    transition: background 0.3s cubic-bezier(0.33, 0.66, 0.66, 1);
+}
