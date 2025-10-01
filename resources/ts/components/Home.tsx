@@ -13,7 +13,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "@styles/_home.scss";
 
-const PRIMARY_COL_HEIGHT = "500px";
+const PRIMARY_COL_HEIGHT = "100vh";
 
 type Category = { id: number; name: string; category_id: number };
 
@@ -49,11 +49,10 @@ export function Home() {
     };
     return (
         <>
-            <Container my="md">
+            <Container my="md" className="container">
                 <SimpleGrid
                     cols={{ base: 1, sm: 2 }}
                     spacing="md"
-                    h={PRIMARY_COL_HEIGHT}
                     style={
                         {
                             // backgroundColor: theme.colors.grape[1],
@@ -70,7 +69,7 @@ export function Home() {
                             }
                         }
                     >
-                        <Box h={PRIMARY_COL_HEIGHT} className="overlay"></Box>
+                        <Box h={"100%"} className="overlay"></Box>
                         <Button
                             // variant="transparent"
                             onClick={() => handleClickRegister()}
@@ -78,14 +77,14 @@ export function Home() {
                             // value={item.category_id}
                             style={{
                                 position: "absolute",
-                                top: "50%",
+                                top: "40%",
                                 left: "25%",
                             }}
                         >
                             登録する？
                         </Button>
                     </Box>
-                    <Box>
+                    <Box className="rigth_area">
                         <Flex
                             h={PRIMARY_COL_HEIGHT}
                             justify="space-around"
@@ -100,11 +99,14 @@ export function Home() {
                                     style={{
                                         backgroundColor: "#F5CBCB",
                                         position: "absolute",
+                                        borderRadius: "10px",
                                     }}
                                 />
                                 <Text
                                     size="xl"
-                                    c={"#716969"}
+                                    fw={"bold"}
+                                    c={"#333"}
+                                    pl="20px"
                                     style={{
                                         position: "absolute",
                                     }}
@@ -120,11 +122,11 @@ export function Home() {
                                         <Button
                                             key={item.name}
                                             variant="transparent"
-                                            c={"#716969"}
+                                            c={"#333"}
                                             onClick={() => handleClick(item.id)}
                                             value={item.category_id}
                                         >
-                                            <Text size="lg">
+                                            <Text size="xl">
                                                 {item.name}にする？
                                             </Text>
                                         </Button>

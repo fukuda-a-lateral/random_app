@@ -7,9 +7,12 @@ import {
     Select,
     Textarea,
     TextInput,
+    Container,
+    Space,
+    Title,
 } from "@mantine/core";
 import { TimePicker } from "@mantine/dates";
-import { useForm, UseFormReturnType } from "@mantine/form";
+import { useForm } from "@mantine/form";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -53,6 +56,7 @@ export function RegisterCard() {
     const [category, setCategory] = useState<Category[]>([]);
     const [genres, setGenres] = useState<Genre[]>([]);
     const [message, setMessage] = useState("");
+    const space_size = "1rem";
 
     useEffect(() => {
         // セレクトにセットするカテゴリーを取得する
@@ -93,17 +97,26 @@ export function RegisterCard() {
         }
     };
     return (
-        <form onSubmit={form.onSubmit(handleSubmit)}>
-            <Center>
-                <Box w={500} p={30}>
+        <Container w={"50%"} ta={"center"} p={"2rem"}>
+            <Title order={2}>カード登録</Title>
+            <form onSubmit={form.onSubmit(handleSubmit)}>
+                <Box w={"100%"} p={30} ta={"left"}>
                     <TextInput
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="タイトル"
                         {...form.getInputProps("title")}
-                        // description="Input description"
-                        // placeholder="Input placeholder"
                     />
-
+                    <Space h={space_size} />
                     <Select
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="カテゴリー"
                         placeholder="ここをクリック！"
                         data={category.map((item) => {
@@ -114,7 +127,14 @@ export function RegisterCard() {
                         })}
                         {...form.getInputProps("category")}
                     />
+                    <Space h={space_size} />
+
                     <MultiSelect
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="ジャンル"
                         placeholder="複数選べるよ"
                         // data={["和食", "洋風", "アジアン", "スイーツ"]}
@@ -123,42 +143,84 @@ export function RegisterCard() {
                         })}
                         {...form.getInputProps("genres")}
                     />
+                    <Space h={space_size} />
                     <Textarea
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="説明"
                         // description="Input description"
                         // placeholder="Input placeholder"
                         {...form.getInputProps("description")}
                     />
+                    <Space h={space_size} />
                     <TextInput
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="関連サイト"
                         // description="Input description"
                         // placeholder="Input placeholder"
                         {...form.getInputProps("url")}
                     />
+                    <Space h={space_size} />
                     <FileInput
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="画像"
                         // description="Input description"
                         placeholder="ここをクリックして画像を選択"
                         {...form.getInputProps("img")}
                     />
+                    <Space h={space_size} />
                     <TextInput
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="所在地"
                         // description="Input description"
                         // placeholder="Input placeholder"
                         {...form.getInputProps("location")}
                     />
+                    <Space h={space_size} />
                     <TimePicker
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="OPEN"
                         withDropdown
                         {...form.getInputProps("start")}
                     />
+                    <Space h={space_size} />
                     <TimePicker
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         label="CLOSE"
                         withDropdown
                         {...form.getInputProps("end")}
                     />
+                    <Space h={space_size} />
                     <MultiSelect
-                        label="営業日"
+                        size="sm"
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
+                        label="定休日"
                         placeholder="複数選べるよ"
                         data={[
                             "土曜日",
@@ -173,9 +235,12 @@ export function RegisterCard() {
                         ]}
                         {...form.getInputProps("close")}
                     />
-                    <Button type="submit">登録</Button>
                 </Box>
-            </Center>
-        </form>
+                <Space h={space_size} />
+                <Button type="submit" className="middle">
+                    登録
+                </Button>
+            </form>
+        </Container>
     );
 }

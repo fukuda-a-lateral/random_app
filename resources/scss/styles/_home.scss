@@ -3,13 +3,21 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    height: 500px;
+    min-height: "100vh";
     // background-color: red;
 }
 
+.right_area {
+    min-height: "100vh" !important;
+}
+
+.container {
+    min-height: "100vh" !important;
+}
 .overlay {
-    background: rgba(195, 146, 180, 0.4);
+    background: rgba(193, 167, 185, 0.4);
     width: 100%;
+    min-height: "100vh";
     // height: $card-height;
     position: absolute;
     z-index: 1;

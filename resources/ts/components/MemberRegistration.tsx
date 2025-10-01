@@ -1,4 +1,11 @@
-import { Box, Button, PasswordInput, TextInput } from "@mantine/core";
+import {
+    Box,
+    Button,
+    PasswordInput,
+    TextInput,
+    Container,
+    Title,
+} from "@mantine/core";
 import { useState } from "react";
 import { useForm } from "@mantine/form";
 import axios from "axios";
@@ -31,7 +38,6 @@ export function MemberRegistration() {
             };
             const res = await axios.post("api/member-register", params);
             setPost(res.data);
-
             console.log("post成功！", post);
             navigate("/");
         } catch (error) {
@@ -39,41 +45,64 @@ export function MemberRegistration() {
         }
     };
     return (
-        <div style={{ padding: 40 }}>
-            <h1>会員登録</h1>
+        <Container w={"50%"} ta={"center"} p={"2rem"}>
+            <Title order={2}>会員登録</Title>
             <form onSubmit={form.onSubmit(handleSubmit)}>
-                <Box p={"xs"}>
+                <Box p={"xs"} ta={"left"}>
                     <TextInput
+                        size="md"
+                        mb={"3%"}
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         {...form.getInputProps("name")}
-                        label="お名前"
+                        label="■お名前"
                         placeholder="アプリ上の表示ネームだよ"
                     />
                     <TextInput
+                        size="md"
+                        mb={"3%"}
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         {...form.getInputProps("email")}
-                        label="メールアドレス"
+                        label="■メールアドレス"
                         placeholder="ログインID or メールアドレス"
                     />
                     <PasswordInput
+                        size="md"
+                        mb={"3%"}
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         {...form.getInputProps("password")}
-                        label="パスワード"
+                        label="■パスワード"
                         placeholder=""
                     />
                     <PasswordInput
+                        size="md"
+                        mb={"3%"}
+                        classNames={{
+                            label: "my-label",
+                            input: "my-input",
+                        }}
                         {...form.getInputProps("password_confirmation")}
-                        label="確認パスワード"
+                        label="■確認パスワード"
                         placeholder=""
                     />
                 </Box>
                 <Button
-                    color="green"
-                    size="lg"
-                    className="text-red"
+                    size="md"
+                    className="middle"
                     type="submit"
                     // onClick={handleSubmit} ←form自体にonSubmitがあるから不要
                 >
                     登録
                 </Button>
             </form>
-        </div>
+        </Container>
     );
 }

@@ -46,6 +46,7 @@ export function Genres() {
                                     h={120}
                                     w={200}
                                     m={30}
+                                    className="large"
                                     onClick={() => handleClick(item.id)}
                                 >
                                     <Text fz={30}>{item.name}</Text>
