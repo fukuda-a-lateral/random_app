@@ -1,5 +1,5 @@
 import { Box } from "@mantine/core";
-import "@styles/_genre_card.scss";
+import "@styles/_base_card.scss";
 import { CardInfo } from "../type/CardInfo";
 
 // propsオブジェクトのcard_infoというキーをcard_infoという変数に分割代入している
@@ -19,23 +19,20 @@ export function BaseCard({ card_info }: { card_info: CardInfo }) {
         : formatterYYYYMMDD.format(date);
     return (
         <>
-            <Box className="blog-card spring-fever">
+            <Box className="blog-card spring-fever container">
                 <Box className="title-content">
                     <h3>{card_info.title}</h3>
                     <hr />
-                    <Box className="intro">
-                        {card_info.description}
-                        ここにdescriptionがいいかな。チャイがうまいとかどこにでもあるとかエクストラミルクがいいとか
-                    </Box>
+                    <Box className="intro">{card_info.description}</Box>
                 </Box>
                 {/* <!-- /.title-content --> */}
                 <Box className="card-info">
-                    <Box>URL:{card_info.url}</Box>
-                    <Box>場所:{card_info.location}</Box>
+                    <Box>URL : {card_info.url}</Box>
+                    <Box>場所 : {card_info.location}</Box>
                     <Box>
-                        営業時間:{card_info.start} ~ {card_info.end}
+                        営業時間 : {card_info.start} ~ {card_info.end}
                     </Box>
-                    <Box>定休日:{card_info.close}</Box>
+                    <Box>定休日 :{card_info.close}</Box>
                 </Box>
                 {/* <!-- /.card-info --> */}
                 <Box className="utility-info">

@@ -12,8 +12,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "@styles/_home.scss";
+import { Header } from "./Header";
 
-const PRIMARY_COL_HEIGHT = "100vh";
+const PRIMARY_COL_HEIGHT = "80vh";
 
 type Category = { id: number; name: string; category_id: number };
 
@@ -49,10 +50,11 @@ export function Home() {
     };
     return (
         <>
-            <Container my="md" className="container">
+            <Header />
+            <Container className="container">
                 <SimpleGrid
                     cols={{ base: 1, sm: 2 }}
-                    spacing="md"
+                    spacing="xl"
                     style={
                         {
                             // backgroundColor: theme.colors.grape[1],
@@ -69,7 +71,7 @@ export function Home() {
                             }
                         }
                     >
-                        <Box h={"100%"} className="overlay"></Box>
+                        {/* <Box h={"100%"} className="overlay"></Box> */}
                         <Button
                             // variant="transparent"
                             onClick={() => handleClickRegister()}

@@ -36,6 +36,19 @@ button.large {
     z-index: 10;
 }
 
+button.genre {
+    color: #554f4f;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #fff;
+    border: 3px #ada2a2 solid;
+    width: 200px;
+    padding: 10px;
+    // border: 1px #333 solid;
+    border-radius: 25px;
+    z-index: 10;
+}
+
 button.original-box-shadow {
     display: flex;
     align-items: center;
