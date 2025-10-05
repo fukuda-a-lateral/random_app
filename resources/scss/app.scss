@@ -23,6 +23,10 @@ button.middle {
     padding: 10px;
     // margin: 5px;
 }
+button.middle:hover {
+    background-color: #554f4f;
+    color: #fff;
+}
 
 button.large {
     color: #333;
@@ -48,13 +52,17 @@ button.genre {
     border-radius: 25px;
     z-index: 10;
 }
+button.genre:hover {
+    background-color: #554f4f;
+    color: #fff;
+}
 
 button.original-box-shadow {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #333333;
-    background-color: #f5cbcb;
+    background-color: #efecec;
     font-size: 1rem;
     width: 200px;
     // height: 100px;

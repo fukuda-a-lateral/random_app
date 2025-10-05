@@ -15,6 +15,7 @@ import { TimePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Category = {
     id: number;
@@ -57,6 +58,7 @@ export function RegisterCard() {
     const [genres, setGenres] = useState<Genre[]>([]);
     const [message, setMessage] = useState("");
     const space_size = "1rem";
+    const navigate = useNavigate();
 
     useEffect(() => {
         // セレクトにセットするカテゴリーを取得する
@@ -95,6 +97,10 @@ export function RegisterCard() {
         } catch (error) {
             console.log("カードの登録に失敗", error);
         }
+    };
+
+    const handleReturnClick = () => {
+        navigate("/home");
     };
     return (
         <Container w={"50%"} ta={"center"} p={"2rem"}>
@@ -237,7 +243,14 @@ export function RegisterCard() {
                     />
                 </Box>
                 <Space h={space_size} />
-                <Button type="submit" className="middle">
+                <Button
+                    className="middle"
+                    mr="10px"
+                    onClick={handleReturnClick}
+                >
+                    戻る
+                </Button>
+                <Button type="submit" className="middle" ml="10px">
                     登録
                 </Button>
             </form>

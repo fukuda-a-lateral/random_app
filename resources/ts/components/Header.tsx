@@ -9,7 +9,7 @@ export function Header() {
                 backgroundColor: "#ADA2A2",
             }}
         >
-            <Text>ヘッダーだおんｗ</Text>
+            <Text>ヘッダー</Text>
         </Box>
     );
 }

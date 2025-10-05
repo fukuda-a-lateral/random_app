@@ -13,10 +13,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useAuth } from "../../contexts/AuthContext";
-import axios from "axios";
-import { useState } from "react";
-import { Navigate, replace, useLocation, useNavigate } from "react-router-dom";
-import { table } from "console";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PRIMARY_COL_HEIGHT = "500px";
 

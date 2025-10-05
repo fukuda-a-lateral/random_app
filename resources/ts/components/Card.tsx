@@ -1,7 +1,7 @@
-import { Box, Button, Text } from "@mantine/core";
+import { Box, Button, Container, Text } from "@mantine/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { BaseCard } from "./BaseCard";
 import { CardInfo } from "../type/CardInfo";
 import { card_info_ini } from "../const/CardInfo";
@@ -23,9 +23,20 @@ export function Card() {
         };
         getCard();
     }, []);
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(-1);
+    };
     return (
         <>
-            <BaseCard card_info={cards} />
+            <Box>
+                <BaseCard card_info={cards} />
+                <Box className="return">
+                    <Button className="middle" onClick={handleClick}>
+                        戻る
+                    </Button>
+                </Box>
+            </Box>
         </>
     );
 }

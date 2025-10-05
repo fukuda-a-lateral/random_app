@@ -51,36 +51,21 @@ export function Home() {
     return (
         <>
             <Header />
+
             <Container className="container">
-                <SimpleGrid
-                    cols={{ base: 1, sm: 2 }}
-                    spacing="xl"
-                    style={
-                        {
-                            // backgroundColor: theme.colors.grape[1],
-                        }
-                    }
-                >
+                <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl">
                     <Box
                         // h={PRIMARY_COL_HEIGHT}
                         className="left-area"
-                        style={
-                            {
-                                // backgroundColor: theme.colors.grape[5],
-                                // position: "relative",
-                            }
-                        }
                     >
                         {/* <Box h={"100%"} className="overlay"></Box> */}
                         <Button
-                            // variant="transparent"
                             onClick={() => handleClickRegister()}
                             className="original-box-shadow"
-                            // value={item.category_id}
                             style={{
                                 position: "absolute",
-                                top: "40%",
-                                left: "25%",
+                                top: "50%",
+                                left: "35%",
                             }}
                         >
                             登録する？
@@ -90,14 +75,14 @@ export function Home() {
                         <Flex
                             h={PRIMARY_COL_HEIGHT}
                             justify="space-around"
-                            align="center"
+                            align="flex-start"
                             direction="column"
                             wrap="wrap"
                         >
                             <Box w={"100%"} style={{ position: "relative" }}>
                                 <Box
                                     h={20}
-                                    w={"100%"}
+                                    w={"70%"}
                                     style={{
                                         backgroundColor: "#F5CBCB",
                                         position: "absolute",

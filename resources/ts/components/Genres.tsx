@@ -1,4 +1,4 @@
-import { Button, Grid, Text, Container, Center } from "@mantine/core";
+import { Button, Grid, Text, Container, Center, Box } from "@mantine/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -36,29 +36,38 @@ export function Genres() {
         navigate(`/card/${genre_id}`);
     };
 
+    const handleReturnClick = () => {
+        navigate("/home");
+    };
+
     return (
         <>
             <Header />
-            <Center maw={1800} p={50}>
-                <Grid>
-                    {genres.map((item) => {
-                        return (
-                            <Grid.Col key={item.id} span={3}>
-                                <Button
-                                    h={120}
-                                    w={200}
-                                    m={30}
-                                    className="genre"
-                                    onClick={() => handleClick(item.id)}
-                                >
-                                    <Text fz={30}>{item.name}</Text>
-                                </Button>
-                                {/* {item.name} */}
-                            </Grid.Col>
-                        );
-                    })}
-                </Grid>
-            </Center>
+            <Box ta={"center"}>
+                <Center maw={1800} p={50}>
+                    <Grid>
+                        {genres.map((item) => {
+                            return (
+                                <Grid.Col key={item.id} span={3}>
+                                    <Button
+                                        h={120}
+                                        w={200}
+                                        m={30}
+                                        className="genre"
+                                        onClick={() => handleClick(item.id)}
+                                    >
+                                        <Text fz={30}>{item.name}</Text>
+                                    </Button>
+                                    {/* {item.name} */}
+                                </Grid.Col>
+                            );
+                        })}
+                    </Grid>
+                </Center>
+                <Button className="middle" onClick={handleReturnClick}>
+                    戻る
+                </Button>
+            </Box>
         </>
     );
 }

@@ -6,18 +6,15 @@
 }
 
 .right_area {
-    // min-height: "100vh" !important;
     width: 50px;
 }
 
 .container {
-    // min-height: "80vh" !important;
+    max-width: 100% !important;
 }
 .overlay {
     background: rgba(193, 167, 185, 0.4);
     width: 100%;
-    // min-height: "100vh";
-    // height: $card-height;
     position: absolute;
     z-index: 1;
     top: 0;
