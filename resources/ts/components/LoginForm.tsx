@@ -43,7 +43,6 @@ export function LoginForm() {
         //useFormのおかげでvaluesに入力された内容がオブジェクトで全て入ってるのでそのまま渡す
         try {
             const success = await login(values);
-
             if (success) {
                 console.log("ログイン成功！", success);
                 //ログイン後、元のパスかhomeに遷移

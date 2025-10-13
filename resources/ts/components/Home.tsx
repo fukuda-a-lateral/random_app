@@ -51,7 +51,6 @@ export function Home() {
     return (
         <>
             <Header />
-
             <Container className="container">
                 <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl">
                     <Box

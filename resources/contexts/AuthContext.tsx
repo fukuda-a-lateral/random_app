@@ -59,8 +59,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
             await fetchUser();
             return true;
         } catch (error) {
-            console.error("--- Login Function CAUGHT AN ERROR ---"); // デバッグ用
-            console.error("Full Error Object:", error); // エラーオブジェクト全体を出力
+            console.error("ログインエラー", error); // エラーオブジェクト全体を出力
             //ログイン失敗したらユーザー情報をnullにする
             setUser(null);
             //エラーを呼び出し元でキャッチできるようにスローする

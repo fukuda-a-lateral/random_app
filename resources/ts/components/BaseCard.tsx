@@ -1,4 +1,4 @@
-import { Box } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 import "@styles/_base_card.scss";
 import { CardInfo } from "../type/CardInfo";
 
@@ -27,7 +27,16 @@ export function BaseCard({ card_info }: { card_info: CardInfo }) {
                 </Box>
                 {/* <!-- /.title-content --> */}
                 <Box className="card-info">
-                    <Box>URL : {card_info.url}</Box>
+                    <Box
+                        style={{
+                            overflowWrap: "break-word",
+                            lineHeight: "normal",
+                            marginBottom: "5px",
+                        }}
+                    >
+                        URL :<br />
+                        <a href={card_info.url}>{card_info.url}</a>
+                    </Box>
                     <Box>場所 : {card_info.location}</Box>
                     <Box>
                         営業時間 : {card_info.start} ~ {card_info.end}
