@@ -9,6 +9,7 @@ import { LoginForm } from "./components/LoginForm";
 import Example from "./components/Example";
 import axios from "axios";
 import { MemberRegistration } from "./components/MemberRegistration";
+import { Complete } from "./components/Complete";
 
 import { AuthProvider } from "../contexts/AuthContext";
 import { Home } from "./components/Home";
@@ -44,21 +45,25 @@ const MainApp = () => {
                             element={<MemberRegistration />}
                         ></Route>
                         {/* PrivateRoutes内に設定された画面はログインが必須 */}
-                        {/* <Route element={<ProtectedRoutes />}> */}
-                        <Route path="/home" element={<Home />}></Route>
-                        <Route
-                            path="/genres/:category_id"
-                            element={<Genres />}
-                        ></Route>
-                        <Route
-                            path="/card/:genre_id"
-                            element={<Card />}
-                        ></Route>
-                        <Route
-                            path="/register-card"
-                            element={<RegisterCard />}
-                        ></Route>
-                        {/* </Route> */}
+                        <Route element={<ProtectedRoutes />}>
+                            <Route path="/home" element={<Home />}></Route>
+                            <Route
+                                path="/genres/:category_id"
+                                element={<Genres />}
+                            ></Route>
+                            <Route
+                                path="/card/:genre_id"
+                                element={<Card />}
+                            ></Route>
+                            <Route
+                                path="/register-card"
+                                element={<RegisterCard />}
+                            ></Route>
+                            <Route
+                                path="/complete"
+                                element={<Complete />}
+                            ></Route>
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>

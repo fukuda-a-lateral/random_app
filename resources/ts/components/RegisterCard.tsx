@@ -10,6 +10,7 @@ import {
     Container,
     Space,
     Title,
+    Text,
 } from "@mantine/core";
 import { TimePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
@@ -94,14 +95,17 @@ export function RegisterCard() {
                 form.getValues()
             );
             setMessage(res.data);
+            console.log("メッセージ", message);
         } catch (error) {
             console.log("カードの登録に失敗", error);
+            setMessage("登録できませんでした");
         }
     };
 
     const handleReturnClick = () => {
         navigate("/home");
     };
+    const handleRegisterClick = () => {};
     return (
         <Container w={"50%"} ta={"center"} p={"2rem"}>
             <Title order={2}>カード登録</Title>
@@ -238,6 +242,7 @@ export function RegisterCard() {
                             "金曜日",
                             "祝日",
                             "祝前",
+                            "なし",
                         ]}
                         {...form.getInputProps("close")}
                     />
@@ -254,6 +259,7 @@ export function RegisterCard() {
                     登録
                 </Button>
             </form>
+            <Text c={"red"}>{message}</Text>
         </Container>
     );
 }
